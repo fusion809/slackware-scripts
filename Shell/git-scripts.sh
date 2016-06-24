@@ -1,15 +1,15 @@
 ## Update local slackware-scripts repo
 function cps {
   sudo chmod +x -R {$HOME,/root}/Shell/
-  rm -rf $HOME/GitHub/mine/slackware-scripts/Shell && mkdir $HOME/GitHub/mine/slackware-scripts/Shell
-  sudo rm -rf $HOME/GitHub/mine/slackware-scripts/root/Shell
-  cp -a $HOME/Shell/* $HOME/GitHub/mine/slackware-scripts/Shell
-  cp -a $HOME/{.bashrc,.zshrc} $HOME/GitHub/mine/slackware-scripts/
-  sudo cp -a /root/{Shell,.bashrc,.zshrc} $HOME/GitHub/mine/slackware-scripts/root/
+  rm -rf $GHUBM/slackware-scripts/Shell && mkdir $GHUBM/slackware-scripts/Shell
+  sudo rm -rf $GHUBM/slackware-scripts/root/Shell
+  cp -a $HOME/Shell/* $GHUBM/slackware-scripts/Shell
+  cp -a $HOME/{.bashrc,.zshrc} $GHUBM/slackware-scripts/
+  sudo cp -a /root/{Shell,.bashrc,.zshrc} $GHUBM/slackware-scripts/root/
 }
 
 function cdss {
-  cd $HOME/GitHub/mine/slackware-scripts
+  cd $GHUBM/slackware-scripts
 }
 
 ## Update sabayon-scripts GitHub repo

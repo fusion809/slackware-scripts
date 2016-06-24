@@ -1,4 +1,3 @@
-
 # Git shrink
 # Taken from http://stackoverflow.com/a/2116892/1876983
 function gitsh {

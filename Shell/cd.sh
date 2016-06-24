@@ -1,9 +1,9 @@
 function cdsh {
-  cd $HOME/Shell
+  cd $SHL
 }
 
 function cdg {
-  cd $HOME/GitHub/$1
+  cd $GHUB/$1
 }
 
 function cdgm {
@@ -16,4 +16,8 @@ function cdgo {
 
 function cdsb {
   cdgo SlackBuilds
+}
+
+function cdat {
+  cd $HOME/.atom
 }

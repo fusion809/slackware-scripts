@@ -9,3 +9,8 @@ function slapin {
 function slaprm {
   sudo slapt-get -r "$@"
 }
+
+function update {
+  slapup
+  apmup
+}

@@ -1,3 +1,3 @@
 function edsh {
-  atom $HOME/Shell $HOME/.bashrc $HOME/.zshrc
+  atom $SHL $HOME/.bashrc $HOME/.zshrc
 }
