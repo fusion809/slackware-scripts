@@ -1,8 +1,5 @@
-#!/bin/zsh
-
-export TERM="xterm-256color"
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+  export ZSH=/home/fusion809/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -52,38 +49,40 @@ ZSH_THEME="hcompact"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-source $ZSH/custom/zsh-completion-generator/zsh-completion-generator.plugin.zsh
+plugins=(git zsh-syntax-highlighting)
 
-plugins=(git zsh-syntax-highlighting safe-paste zsh-completions github zsh-navigation-tools)
-
-autoload -U compinit && compinit
-
-source $ZSH/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-
-# bind UP and DOWN arrow keys
-
-zmodload zsh/terminfo
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
-#
-# # bind UP and DOWN arrow keys (compatibility fallback
-# # for Ubuntu 12.04, Fedora 21, and MacOSX 10.9 users)
-
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-#
-# # bind P and N for EMACS mode
-# bindkey -M emacs '^P' history-substring-search-up
-# bindkey -M emacs '^N' history-substring-search-down
-#
-# # bind k and j for VI mode
-# bindkey -M vicmd 'k' history-substring-search-up
-# bindkey -M vicmd 'j' history-substring-search-down
 # User configuration
-source $ZSH/oh-my-zsh.sh
-export PATH=$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin
 
-for i in $HOME/Shell/*.sh
+  export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/root/.gem/ruby/2.2.0/bin:/home/fusion809/.gem/ruby/2.2.0/bin:/usr/lib/jvm/java-8-openjdk/bin/"
+# export MANPATH="/usr/local/man:$MANPATH"
+
+source $ZSH/oh-my-zsh.sh
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+for i in ~/Shell/*.sh
 do
 	. "$i"
 done
