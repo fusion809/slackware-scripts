@@ -52,7 +52,6 @@ ZSH_THEME="hcompact"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-source $ZSH/custom/zsh-completion-generator/zsh-completion-generator.plugin.zsh
 
 plugins=(git zsh-syntax-highlighting safe-paste zsh-completions github zsh-navigation-tools)
 
