@@ -1,16 +1,26 @@
 function slapup {
-  sudo slapt-get -u && sudo slapt-get --upgrade
+  sudo slapt-get -u && sudo slapt-get --upgrade -y
 }
 
 function slapin {
-  sudo slapt-get -i "$@"
+  sudo slapt-get -i "$@" -y
 }
 
+alias ssgi=slapin
+
 function slaprm {
-  sudo slapt-get -r "$@"
+  sudo slapt-get -r "$@" -y
 }
+
+alias ssgr=slaprm
 
 function update {
   slapup
   apmup
 }
+
+function slaps {
+  sudo slapt-get --search "$@"
+}
+
+alias ssgs=slaps
