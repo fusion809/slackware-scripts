@@ -1,11 +1,11 @@
 function apmi {
-  apm install "$@" --no-confirm
+  atom-apm install "$@" --no-confirm
 }
 
 function apmup {
-  apm update --no-confirm
+  atom-apm update --no-confirm
 }
 
 function apmr {
-  apm remove "$@" --no-confirm
+  atom-apm remove "$@" --no-confirm
 }
