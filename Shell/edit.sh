@@ -3,5 +3,5 @@ function edsh {
 }
 
 function edsl {
-  atom $GHUBO/SlackBuilds
+  atom $HOME/SlackBuilds
 }

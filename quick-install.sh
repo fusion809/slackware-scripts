@@ -3,35 +3,50 @@ if ! [[ -d $HOME/GitHub ]]; then
   mkdir $HOME/GitHub
 fi
 
-# Get openssh, if not pre-installed and Zsh
-if `cat $PATH | grep /usr/sbin > /dev/null 2>&1`; then
-  wget -c http://software.jaos.org/slackpacks/14.2-x86_64/slapt-get/slapt-get-0.10.2t-x86_64-1.tgz
-  su -c "installpkg slapt-get-0.10.2t-x86_64-1.tgz"
-  export PATH=$PATH:/usr/sbin
-  su -c "slapt-get -u"
-  su -c "slapt-get -i openssh zsh git"
+function slaptget-install {
+  TGZ=$(curl -sL https://software.jaos.org/ | grep "x86_64" | grep "tgz" | head -n 2 | cut -d '"' -f 2 | tail -n 1)
+  VERSION=$(printf $TGZ | cut -d '/' -f 5 | cut -d '-' -f 3)
+  REVISION=$(printf $TGZ | cut -d '/' -f 5 | cut -d '-' -f 5 | sed 's/\.tgz//g')
+  curl -sL https://software.jaos.org/$TGZ > /tmp/slapt-get-$VERSION-x86_64-$REVISION.tgz
+  su -c "installpkg /tmp/slapt-get-$VERSION-x86_64-$REVISION.tgz"
+}
+
+if ! `which slapt-get > /dev/null 2>&1`; then
+  slaptget-install
 fi
 
+function slaptsrc-install {
+  TGZ=$(curl -sL https://software.jaos.org/ | grep "x86_64" | grep "tgz" | tail -n 1 | cut -d '"' -f 2)
+  VERSION=$(printf $TGZ | cut -d '/' -f 5 | cut -d '-' -f 3)
+  REVISION=$(printf $TGZ | cut -d '/' -f 5 | cut -d '-' -f 5 | sed 's/\.tgz//g')
+  curl -sL https://software.jaos.org/$TGZ > /tmp/slapt-src-$VERSION-x86_64-$REVISION.tgz
+  su -c "installpkg /tmp/slapt-src-$VERSION-x86_64-$REVISION.tgz"
+}
+
+if ! `which slapt-src > /dev/null 2>&1`; then
+  slaptsrc-install
+fi
+
+if `printf $PATH | grep /usr/sbin > /dev/null 2>&1`; then
+  export PATH=$PATH:/usr/sbin
+fi
+
+su -c "slapt-get -u"
+su -c "slapt-get -i openssh zsh git"
+
 # Clone slackware-scripts repo
-if ! [[ -d $HOME/GitHub/slackware-scripts ]] || ! [[ -d $HOME/GitHub/mine/slackware-scripts ]]; then
-  git clone https://github.com/fusion809/slackware-scripts $HOME/GitHub/mine/slackware-scripts
+if ! [[ -d $HOME/GitHub/mine/scripts/slackware-scripts ]]; then
+  git clone https://github.com/fusion809/slackware-scripts $HOME/GitHub/mine/scripts/slackware-scripts
   # Copy across
-  cp -a $HOME/GitHub/mine/slackware-scripts/{Shell,.bashrc,.zshrc} $HOME/
-  sudo cp -a $HOME/GitHub/mine/slackware-scripts/root/{Shell,.bashrc,.zshrc} /root/
-elif [[ -d $HOME/GitHub/slackware-scripts ]]; then
-  cd $HOME/GitHub/slackware-scripts
+  cp -a $HOME/GitHub/mine/scripts/slackware-scripts/{Shell,.bashrc,.zshrc} $HOME/
+  sudo cp -a $HOME/GitHub/mine/scripts/slackware-scripts/root/{Shell,.bashrc,.zshrc} /root/
+elif [[ -d $HOME/GitHub/mine/scripts/slackware-scripts ]]; then
+  cd $HOME/GitHub/mine/scripts/slackware-scripts
   git pull origin master
   cd -
   # Copy across
-  cp -a $HOME/GitHub/slackware-scripts/{Shell,.bashrc,.zshrc} $HOME/
-  sudo cp -a $HOME/GitHub/slackware-scripts/root/{Shell,.bashrc,.zshrc} /root/
-elif [[ -d $HOME/GitHub/mine/slackware-scripts ]]; then
-  cd $HOME/GitHub/mine/slackware-scripts
-  git pull origin master
-  cd -
-  # Copy across
-  cp -a $HOME/GitHub/mine/slackware-scripts/{Shell,.bashrc,.zshrc} $HOME/
-  sudo cp -a $HOME/GitHub/mine/slackware-scripts/root/{Shell,.bashrc,.zshrc} /root/
+  cp -a $HOME/GitHub/mine/scripts/slackware-scripts/{Shell,.bashrc,.zshrc} $HOME/
+  sudo cp -a $HOME/GitHub/mine/scripts/slackware-scripts/root/{Shell,.bashrc,.zshrc} /root/
 fi
 
 if ! [[ -d $HOME/.oh-my-zsh ]]; then
@@ -43,15 +58,15 @@ else
   cd -
 fi
 
-if ! [[ -d $HOME/GitHub/zsh-theme ]] || ! [[ -d $HOME/GitHub/mine/zsh-theme ]]; then
+if ! [[ -d $HOME/GitHub/zsh-theme ]] || ! [[ -d $HOME/GitHub/mine/scripts/zsh-theme ]]; then
 # Get my self-made zsh-themes
-  git clone https://github.com/fusion809/zsh-theme $HOME/GitHub/mine/zsh-theme
-  cp -a $HOME/GitHub/mine/zsh-theme/*.zsh-theme $HOME/.oh-my-zsh/themes/
+  git clone https://github.com/fusion809/zsh-theme $HOME/GitHub/mine/scripts/zsh-theme
+  cp -a $HOME/GitHub/mine/scripts/zsh-theme/*.zsh-theme $HOME/.oh-my-zsh/themes/
 else
-  cd $HOME/GitHub/{,mine/}zsh-theme
+  cd $HOME/GitHub/mine/scripts/zsh-theme
   git pull origin master
   cd -
-  cp -a $HOME/GitHub/{,mine/}zsh-theme/*.zsh-theme $HOME/.oh-my-zsh/themes/
+  cp -a $HOME/GitHub/mine/scripts/zsh-theme/*.zsh-theme $HOME/.oh-my-zsh/themes/
 fi
 
 if ! [[ -d $HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting ]]; then

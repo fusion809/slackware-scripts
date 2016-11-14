@@ -21,3 +21,7 @@ function cdsb {
 function cdat {
   cd $HOME/.atom
 }
+
+function cdp {
+  cd $HOME/Programs
+}
