@@ -15,13 +15,13 @@ function cdgo {
 }
 
 function cdsb {
-  cd $HOME/SlackBuilds
+  cd $HOME/SlackBuilds/$1
 }
 
 function cdat {
-  cd $HOME/.atom
+  cd $HOME/.atom/$1
 }
 
 function cdp {
-  cd $HOME/Programs
+  cd $HOME/Programs/$1
 }
