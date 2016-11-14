@@ -15,7 +15,7 @@ function cdgo {
 }
 
 function cdsb {
-  cdgo SlackBuilds
+  cd $HOME/SlackBuilds
 }
 
 function cdat {
