@@ -32,7 +32,8 @@ if `printf $PATH | grep /usr/sbin > /dev/null 2>&1`; then
 fi
 
 su -c "slapt-get -u"
-su -c "slapt-get -i openssh zsh git"
+su -c "slapt-get -i -y openssh zsh git"
+su -c "slapt-src -i -y nodejs keychain"
 
 # Clone slackware-scripts repo
 if ! [[ -d $HOME/GitHub/mine/scripts/slackware-scripts ]]; then
