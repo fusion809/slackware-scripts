@@ -1,7 +1,7 @@
 function edsh {
-  atom $SHL $HOME/.bashrc $HOME/.zshrc
+    vim $SHL $HOME/.bashrc $HOME/.zshrc
 }
 
 function edsl {
-  atom $HOME/SlackBuilds
+    vim $HOME/SlackBuilds
 }
