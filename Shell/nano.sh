@@ -1,3 +1,0 @@
-function nsb {
-  nano *.SlackBuild
-}

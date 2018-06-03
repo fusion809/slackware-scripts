@@ -1,3 +1,3 @@
 function sbuild {
-  sudo ./.*SlackBuild
+    sudo ./.*SlackBuild
 }
