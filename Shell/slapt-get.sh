@@ -14,11 +14,6 @@ function slaprm {
 
 alias ssgr=slaprm
 
-function update {
-  slapup
-  apmup
-}
-
 function slaps {
   sudo slapt-get --search "$@"
 }

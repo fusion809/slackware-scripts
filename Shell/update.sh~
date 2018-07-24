@@ -1,0 +1,19 @@
+function slpkup {
+    sudo slpkg upgrade
+}
+
+alias slpkgup=slpkup
+
+function flatup {
+    sudo flatpak update -y
+}
+
+function apmup {
+    apm update --no-confirm
+}
+
+function update {
+    slpkgup
+    flatup
+    apmup
+}
