@@ -1,19 +1,11 @@
-function slapin {
-	slapt-get -i "$@"
+function slpin {
+    slpkg -s sbo "$@"
 }
 
 function slaprm {
-	slapt-get -r "$@"
+    slackpkg remove "$@"
 }
 
 function update {
-	slapt-get -u && slapt-get --upgrade "$@"
-}
-
-function instl {
-	if [[ -n "$@" ]]; then
-		installpkg "$@"
-	else
-		installpkg *.txz || installpkg *.tgz || installpkg *.tbz
-	fi
+    slpkg upgrade "$@" ; flatpak update
 }
