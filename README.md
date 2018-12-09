@@ -1,9 +1,2 @@
 # slackware-scripts
-Slackware shell scripts. 
-
-## Quick Install
-Run:
-
-```bash
-/bin/bash -c "$(curl -sL https://git.io/vKG4K)"
-```
+Slackware shell scripts, designed to make my life easier on Slackware. 
